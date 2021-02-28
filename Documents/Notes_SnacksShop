@@ -1,0 +1,22 @@
+Page 1 
+------
+
+Add back ground image,
+Click on Menu takes to page 3
+Click on Chat button needs to open a chat window and click on X needs to close it, Click on swiggy.com from chat window, needs to redirect to swiggy.com in a new window/tab,                                                  
+Chat answers can be based on the keyword search in javascript.
+Chat contents are dynamic.
+
+Page 2 - Our stores
+---------------------
+
+Some address , These store address can be put in an excel sheet and can be loaded here as a table.
+
+Page 3 (Menu page)
+-------
+
+View all is a ButtonClick on view all will take to corresponding detailed page of each Menu ( example page 4 - Detailed Menu page)
+
+page 4 (Detailed menu page)
+-----
+Similar to this page  , one page for cake and one for pizzaOrder is a button, When order is clicked the corresponding items will get added to Myorders section, The No ie quantity can be increased or decreased using some up/down arrowWhen submit button is clicked , the total amount is displayedMy orders section is common to all the 3 pages, ie cake,icecream,pizza
