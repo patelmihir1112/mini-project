@@ -2,11 +2,21 @@
 <html>
   <head>
     <title>Home Page</title>
+    <!-- ChatBot -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    
+    <link rel="stylesheet" type="text/css" href="css/jquery.convform.css">
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.convform.js"></script>
+    <script type="text/javascript" src="js/custom.js"></script>
   </head>
   <style>
   body  {
+       
    background-image:url(image/background.jpg);
-   background-repeat: no-repeat ; 
+   background-repeat:repeat-y ; 
    background-size: cover;
   }
   .wrapper {
@@ -28,6 +38,39 @@
 
 </style>
 <body>
+  <!-- ChatBot -->
+<div class="chat_icon">
+	<i class="fa fa-comments" aria-hidden="true"></i>
+</div>
+
+<div class="chat_box">
+	<div class="my-conv-form-wrapper">
+		<form action="" method="GET" class="hidden">
+
+      <select data-conv-question="Hello! How can I help you" name="category">
+        <option value="WebDevelopment">I want to find store</option>
+      </select>
+
+      <div data-conv-fork="category">
+        <div data-conv-case="WebDevelopment">
+          <input type="text" name="domainName" data-conv-question="Please, tell me your area name">    
+        </div>
+        
+      </div>
+
+      
+
+      <input type="text" data-conv-question="Hi, our store Address , <br> is a Snackshop,Stage3,
+      Cross3,{domainName}." data-no-answer="true">
+
+      <input data-conv-question="Enter your e-mail" data-pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" type="email" name="email" required placeholder="What's your e-mail?">
+
+      
+
+  	</form>
+	</div>
+</div>
+<!-- ChatBot end -->
   <div class= wrapper>
     <a href="Home.html"><button type="button" class="button1">Home</button></a>
     <a href="Menu.html"><button type="button" class="button1">Menu</button></a>
@@ -35,6 +78,7 @@
     <a href="#"><button type="button" class="button1">Contact US</button></a>
 
   </div>
+  
 
 </body>
 </html>
