@@ -1,23 +1,22 @@
 const axios = require('axios');
+const connectDB = require('../database/connection')
 
 exports.homeRoutes = (req,res)=> {
     res.render('Home',{title:"Home Page"});
 }
 
-// exports.Menu = (req,res)=>{
-//     res.render('Menu',{title:"Menu"});
-// }
+exports.Menu = (req,res)=>{
+    connectDB.query("SELECT * FROM menu", function (err, result, fields) {
+        if (err) 
+            console.log("Error : retrive the data from menu");
+            res.render('Menu', { title:"Menu", result: result});
+      });
+}
 
-exports.FindMenu = (req,res)=>{
-    axios.get('http://localhost:3000/Menu',{ params : { Id : req.query.Id }})
-    .then(function(res){
-        console.log(Id);
-        const Query = "select * from menulist where Menu_Id = "+Id;
-        connectDB.query(Query,function(err,result,field){
-            if(err)
-                console.log("Error : retrive the data from menulist"+err);
-             res.render("DetailedMenu",{title:"Detailed Menu",result:result});
-        });
+exports.DetailedMenu = (req,res)=>{
+    axios.get('http://localhost:3000/FindItems',{ params : { Id : req.query.Id }})
+    .then(function(response){
+        res.render('FindItems', { title:"Detailed Menu",result : response.data });
     })
     .catch(err =>{
         res.send(err);
@@ -30,8 +29,4 @@ exports.OurStores = (req,res)=>{
 
 exports.Contact = (req,res)=>{
     res.render('Contact');
-}
-
-exports.DetailedMenu = (req,res)=>{
-    res.render('DetailedMenu',{title:"Detailed Menu"});
 }

@@ -31,8 +31,6 @@ app.set("view engine","ejs")
 app.use('/Css',express.static(path.resolve(__dirname,"assets/Css")))
 app.use('/Img',express.static(path.resolve(__dirname,"assets/Img")))
 app.use('/Js',express.static(path.resolve(__dirname,"assets/Js")))
-app.use('/Menu/Css',express.static(path.resolve(__dirname,"assets/Css")))
-app.use('/Menu/Img',express.static(path.resolve(__dirname,"assets/Img")))
 
 //app routes
 app.use('/',require('./server/routes/router'))

@@ -1,0 +1,43 @@
+
+<!-- Header -->
+<%- include('include/_header') %>
+<!-- /Header -->
+
+<!-- Main -->
+<main class="container-flud ml-5 mr-5">
+    <div style="width: 65%;float: left;">
+        <div class="card-columns pt-5">
+            <% for(var i = 0; i < result.length; i++) { %>
+                <div class="card" style="width: 262px;">
+                    <img src="Img/<%= result[i].Image %>" style="width:100%;height: 200px;" class="mx-auto">
+                    <center class="display-5 font-weight-bold"><%= result[i].Name %></center>
+                    <center><i>Price : <%= result[i].Price %></i></center>
+                    <a href=" Order " class="btn btn-warning">Order</a>
+                </div>
+            <% } %>
+            <div class="card" style="width: 262px;">
+                <img src="Img/pizza1.jpg" style="width:100%;height: 200px;" class="mx-auto">
+                <center class="display-5 font-weight-bold">Pizza</center>
+                <center><i>Price : </i></center>
+                <a href=" Order " class="btn btn-warning">Order</a>
+            </div>
+        </div> 
+    </div>
+         
+    <div class="card" style="float: right;background-color: rgb(151, 197, 151);">
+        <h3 style="background-color: orange;text-align: center;">My Order</h3>
+        <table border="1px" width="100%" cellspacing="5" cellpadding="15">
+            <thead>
+                <th>Sr_No</th><th>Item</th><th>No</th><th>Price</th><th> Delete </th>
+            </thead>
+        <%- include('include/MyOrder') %>
+    
+    </div>
+
+</main>
+
+<!-- /Main -->
+
+<!-- Footer -->
+<%- include('include/_footer') %>
+<!-- /Footer -->
