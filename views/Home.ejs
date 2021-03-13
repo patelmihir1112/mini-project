@@ -2,9 +2,49 @@
 <%- include('include/_header') %>
 <!-- /Header -->
 
+ <!-- ChatBot -->
+ <div class="chat_icon">
+	<i class="fa fa-comments" aria-hidden="true"></i>
+</div>
+
+<div class="chat_box">
+	<div class="my-conv-form-wrapper">
+		<form action="" method="GET" class="hidden">
+
+      <select data-conv-question="Hello! How can I help you" name="category">
+        <option value="WebDevelopment">I want to find store</option>
+      </select>
+
+      <div data-conv-fork="category">
+        <div data-conv-case="WebDevelopment">
+          <input type="text" name="domainName" data-conv-question="Please, tell me your area name" >    
+        </div>
+        
+      </div>
+
+      
+
+      <input type="text" data-conv-question="Hi, our store Address , <br> is a Snackshop,Stage3,
+      Cross3,{domainName}." >
+
+      <input type="text" data-conv-question="Yes, go to <a href='https://www.swiggy.com/' >swiggy.com</a> ." >
+
+      
+
+  	</form>
+	</div>
+</div>
+<!-- ChatBot end -->
+
 <!-- Main -->
 <main class="container">
+<<<<<<< HEAD
     <h2 class="text-success">Home Page</h2>
+=======
+    
+        <center><button class="btn btn-success">Snacks Shop</button></center>
+     
+>>>>>>> c66b4a7f81b45f598247b784e8dd404caa9b78cc
 </main>
 <!-- /Main -->
 
