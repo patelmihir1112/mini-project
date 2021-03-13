@@ -1,16 +1,20 @@
 <!-- Header -->
 <%- include('include/_header') %>
 <!-- /Header -->
-<% for(var i = 0; i < result.length; i++) { %>
+
+<!-- Main -->
+<main class="container" >
+    <center><button class="btn btn-success"> Our Stores</button></center>
     
-        <p><%= result[i]%></p>
+ <table width=“295” BGCOLOR="GRAY"  border=“3” cellpadding=“5”>
+
+ 
+    <% for(var i = 0; i < result.length; i++) { %>
+    
+        <tr style="vertical-align:center"><td><%= result[i]%></td></tr>
         
     
-<% } %>
-<!-- Main -->
-<main class="container">
-    <center><button class="btn btn-success"> Our Stores</button></center>
-   
+<% } %></table>
 </main>
 <!-- /Main -->
 

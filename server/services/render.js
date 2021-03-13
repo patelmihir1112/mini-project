@@ -4,7 +4,7 @@ const connectDB = require('../database/connection')
 const reader = require('xlsx') 
 const data = [];
 // Reading our file 
-const file = reader.readFile('E:/freelancer/mini-project/my.xlsx') 
+const file = reader.readFile('../mini-project/my.xlsx') 
 
 exports.homeRoutes = (req,res)=> {
     res.render('Home',{title:"Home Page"});
