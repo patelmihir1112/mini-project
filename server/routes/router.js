@@ -11,11 +11,13 @@ const controller = require('../controller/controller');
 route.get('/',services.homeRoutes);
 route.get('/Menu',services.Menu);
 route.get('/OurStores',services.OurStores);
-route.get('/Contact',services.Contact);
+route.get('/ContactUs',services.ContactUs);
 route.get('/DetailedMenu',services.DetailedMenu);
+// route.get('/Order',controller.Order);
 
 // Api
 route.get('/FindItems',controller.FindItems);
+route.get('/DeleteItem',controller.DeleteItem);
 
 
 module.exports = route

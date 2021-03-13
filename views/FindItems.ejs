@@ -7,31 +7,43 @@
 <main class="container-flud ml-5 mr-5">
     <div style="width: 65%;float: left;">
         <div class="card-columns pt-5">
-            <% for(var i = 0; i < result.length; i++) { %>
+            <% for(var i = 0; i < result[0].length; i++) { %>
                 <div class="card" style="width: 262px;">
-                    <img src="Img/<%= result[i].Image %>" style="width:100%;height: 200px;" class="mx-auto">
-                    <center class="display-5 font-weight-bold"><%= result[i].Name %></center>
-                    <center><i>Price : <%= result[i].Price %></i></center>
-                    <a href=" Order " class="btn btn-warning">Order</a>
+                    <img src="Img/<%= result[0][i].Image %>" style="width:100%;height: 200px;" class="mx-auto">
+                    <center class="display-5 font-weight-bold"><%= result[0][i].Name %></center>
+                    <center><i>Price : <%= result[0][i].Price %></i></center>
+                    <a href="/Order?Name=<%= result[0][i].Name %> && Price=<%= result[0][i].Price %>" class="btn btn-warning">Order</a>
                 </div>
-            <% } %>
-            <div class="card" style="width: 262px;">
-                <img src="Img/pizza1.jpg" style="width:100%;height: 200px;" class="mx-auto">
-                <center class="display-5 font-weight-bold">Pizza</center>
-                <center><i>Price : </i></center>
-                <a href=" Order " class="btn btn-warning">Order</a>
-            </div>
+            <% } %>            
         </div> 
     </div>
          
     <div class="card" style="float: right;background-color: rgb(151, 197, 151);">
         <h3 style="background-color: orange;text-align: center;">My Order</h3>
-        <table border="1px" width="100%" cellspacing="5" cellpadding="15">
+        <table border="1px" width="100%" cellspacing="5" cellpadding="14">
             <thead>
-                <th>Sr_No</th><th>Item</th><th>No</th><th>Price</th><th> Delete </th>
-            </thead>
-        <%- include('include/MyOrder') %>
-    
+                <th>Sr_No</th><th>Item</th><th>Quantity</th><th>Price</th><th> Delete </th>
+            </thead>            
+            <% if(result[1].length) {%>
+                <tbody>
+                    <% for(var i = 0; i < result[1].length; i++) { %>
+                        <tr bgcolor="pink">
+                            <td><%= i+1 %></td>
+                            <td><%= result[1][i].Item %></td>
+                            <td><%= result[1][i].No_Of_Item %></td>
+                            <td><%= result[1][i].Price %></td>
+                            <td><a href="/DeleteItem?Id=<%= result[1][i].Sr_No%>" class="text-danger">X</a></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+                </table>
+                <div class="mt-2 mb-2">
+                <button class="ml-5 mr-5 btn btn-danger">Submit</button>
+                <span style="background-color:rgb(247, 140, 247);">  Total : <%- Total %> ₹  </span>
+            </div>
+            <% } else {%>
+                <tr><td colspan="5" style="text-align: center;"><b>Data Not Found</b></td></tr>
+            <% }%>
     </div>
 
 </main>
