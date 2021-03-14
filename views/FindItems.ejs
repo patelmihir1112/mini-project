@@ -12,7 +12,7 @@
                     <img src="Img/<%= result[0][i].Image %>" style="width:100%;height: 200px;" class="mx-auto">
                     <center class="display-5 font-weight-bold"><%= result[0][i].Name %></center>
                     <center><i>Price : <%= result[0][i].Price %></i></center>
-                    <a href="/Order?Name=<%= result[0][i].Name %> && Price=<%= result[0][i].Price %>" class="btn btn-warning">Order</a>
+                    <a href="/Order?Id=<%= result[0][i].Id %>" class="btn btn-warning">Order</a>
                 </div>
             <% } %>            
         </div> 

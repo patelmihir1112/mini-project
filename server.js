@@ -13,7 +13,7 @@ dotenv.config({path:'config.env'})
 const port = process.env.port || 8081
 
 // log requests
-app.use(morgan('tiny'));
+// app.use(morgan('tiny'));
 
 //mysql connection
 // connectDB();

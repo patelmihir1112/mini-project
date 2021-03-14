@@ -1,1 +1,0 @@
-console.log('mini project for student');

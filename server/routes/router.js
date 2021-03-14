@@ -13,7 +13,7 @@ route.get('/Menu',services.Menu);
 route.get('/OurStores',services.OurStores);
 route.get('/ContactUs',services.ContactUs);
 route.get('/DetailedMenu',services.DetailedMenu);
-// route.get('/Order',controller.Order);
+route.get('/Order',controller.Order);
 
 // Api
 route.get('/FindItems',controller.FindItems);

@@ -13,7 +13,7 @@ exports.homeRoutes = (req,res)=> {
 exports.Menu = (req,res)=>{
     connectDB.query("SELECT * FROM menu", function (err, result, fields) {
         if (err) 
-            console.log("Error : retrive the data from menu");
+            console.log("Error : retrive the data from menu ==>"+err);
             res.render('Menu', { title:"Menu", result: result});
       });
 }
@@ -31,25 +31,7 @@ exports.DetailedMenu = (req,res)=>{
     })
 }
 
-// exports.Order = (req,res)=>{
-//     axios.get('http://localhost:3000/FindItems',{ params : { Id : req.query.Id }})
-//     .then(function(response){
-//         console.log(response.data[Id]+" Maulik");
-//         // const Quary = `insert into myorder (Item,No_Of_Item,Price) values()`;
-//         // connectDB.query(Quary,(err,result,field)=>{
-//         //     if(err)
-//         //          console.log("Error : Insert data int to MyOrder Table"+err);
-//         //     res.render('MyOrder', { title:"Detailed Menu",result : response.data });
-//         // })
-//     })
-//     .catch(err =>{
-//         res.send(err);
-//     })  
-// }
-
 exports.OurStores = (req,res)=>{
-  
- 
 const sheets = file.SheetNames
     for(let i = 0; i < sheets.length; i++) 
     { 
@@ -71,8 +53,6 @@ const sheets = file.SheetNames
         }
 
     }
-    
-    
     res.render('OurStores',{title:"Our Stores" ,result : arr });
 }
 

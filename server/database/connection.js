@@ -17,22 +17,4 @@ connectDB.connect(function(err) {
   });
 
 
-
-// const connectDB = async() => {
-//     try{
-//         //Mysql Connection
-//         const con = await mysql.createConnection(process.env.connstr,{
-//             useNewUrlParser:true,
-//             useUnifiedTopology:true,
-//             useFindAndModify:false,
-//             useCreateIndex:true
-//         })
-       
-//         console.log(`Mysql Connected : ${con.connect.host}`);
-//     }catch(err){
-//         console.log("Error "+err);
-//         process.exit(1);
-//     }
-// }
-
 module.exports = connectDB
