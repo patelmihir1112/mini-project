@@ -178,78 +178,234 @@ ConvState.prototype.printAnswers = function(answers, multiple){
     }
 
 };
+var chi=0;
 ConvState.prototype.answerWith = function(answerText, answerObject) {
-    //console.log('previous answer: ', answerObject);
-    //puts answer inside answers array to give questions access to previous answers
-    if(this.current.input.hasOwnProperty('name')){
-        if(typeof answerObject == 'string') {
-            if(this.current.input.type == 'tel')
-                answerObject = answerObject.replace(/\s|\(|\)|-/g, "");
-            this.answers[this.current.input.name] = {text: answerText, value: answerObject};
-            this.current.answer = {text: answerText, value: answerObject};
-            //console.log('previous answer: ', answerObject);
-        } else {
-            this.answers[this.current.input.name] = answerObject;
-            this.current.answer = answerObject;
-        }
-        if(this.current.input.type == 'select' && !this.current.input.multiple) {
-            $(this.current.input.element).val(answerObject.value).change();
-        } else {
-            $(this.current.input.element).val(answerObject).change();
-        }
+if(chi==0){// console.log('previous answer: ', answerObject);
+  chi++;
+ console.log('previous answer: ', chi);
+//puts answer inside answers array to give questions access to previous answers
+if(this.current.input.hasOwnProperty('name')){
+    if(typeof answerObject == 'string') {
+        if(this.current.input.type == 'tel')
+            answerObject = answerObject.replace(/\s|\(|\)|-/g, "");
+        this.answers[this.current.input.name] = {text: answerText, value: answerObject};
+        this.current.answer = {text: answerText, value: answerObject};
+        //console.log('previous answer: ', answerObject);
+    } else {
+        this.answers[this.current.input.name] = answerObject;
+        this.current.answer = answerObject;
     }
-    //prints answer within messages wrapper
-    if(this.current.input.type == 'password')
-        answerText = answerText.replace(/./g, '*');
-    var message = $('<div class="message from">'+answerText+'</div>');
+    if(this.current.input.type == 'select' && !this.current.input.multiple) {
+        $(this.current.input.element).val(answerObject.value).change();
+    } else {
+        $(this.current.input.element).val(answerObject).change();
+    }
+}
+//prints answer within messages wrapper
+if(this.current.input.type == 'password')
+    answerText = answerText.replace(/./g, '*');
+var message = $('<div class="message from">'+answerText+'</div>');
 
-    if(this.current.input.type=='select' && this.parameters.selectInputStyle=='disable') {
+if(this.current.input.type=='select' && this.parameters.selectInputStyle=='disable') {
+    $(this.wrapper).find('#'+this.parameters.inputIdName).prop('disabled', false);
+    $(this.wrapper).find('#'+this.parameters.inputIdName).attr('placeholder', this.parameters.placeHolder);
+} else if(this.current.input.type=='select' && this.parameters.selectInputStyle=='hide') {
+    if(!this.current.input.multiple) {
+        $(this.wrapper).find('#'+this.parameters.inputIdName).css({display: 'block'});
+        $(this.wrapper).find('#convForm button').css({display: 'block'});
+    } else {
         $(this.wrapper).find('#'+this.parameters.inputIdName).prop('disabled', false);
         $(this.wrapper).find('#'+this.parameters.inputIdName).attr('placeholder', this.parameters.placeHolder);
-    } else if(this.current.input.type=='select' && this.parameters.selectInputStyle=='hide') {
-        if(!this.current.input.multiple) {
-            $(this.wrapper).find('#'+this.parameters.inputIdName).css({display: 'block'});
-            $(this.wrapper).find('#convForm button').css({display: 'block'});
-        } else {
+    }
+}
+
+//removes options before appending message so scroll animation runs without problems
+$(this.wrapper).find("div.options div.option").remove();
+
+
+
+var diff = $(this.wrapper).find('div.options').height();
+var originalHeight = $(this.wrapper).find('.wrapper-messages').data('originalHeight');
+$(this.wrapper).find('.wrapper-messages').css({marginBottom: diff, maxHeight: originalHeight});
+$(this.wrapper).find(this.parameters.inputIdHashTagName).focus();
+if (answerObject.hasOwnProperty('callback')) {
+    this.current.input['callback'] = answerObject.callback;
+}
+setTimeout(function(){
+    $(this.wrapper).find("#messages").append(message);
+    this.scrollDown();
+}.bind(this), 100);
+
+$(this.form).append(this.current.input.element);
+var messageObj = $('<div class="message to typing"><div class="typing_loader"></div></div>');
+setTimeout(function(){
+    $(this.wrapper).find('#messages').append(messageObj);
+    this.scrollDown();
+}.bind(this), 150);
+
+this.parameters.eventList.onInputSubmit(this, function(){
+    //goes to next state and prints question
+    if(this.next()){
+        setTimeout(function(){
+            this.printQuestion();
+        }.bind(this), 300);
+    } else {
+        this.parameters.eventList.onSubmitForm(this);
+    }
+}.bind(this));}
+else if(chi==1){
+    console.log('previous answer: ', chi);
+
+    if(answerObject=="hsr,bangalore"||answerObject=="Jayanagar,bangalore"||answerObject=="HSR,BANGALORE"||answerObject=="JAYANAGAR,BANGALORE" ){
+        chi++;
+        //puts answer inside answers array to give questions access to previous answers
+if(this.current.input.hasOwnProperty('name')){
+    if(typeof answerObject == 'string') {
+        if(this.current.input.type == 'tel')
+            answerObject = answerObject.replace(/\s|\(|\)|-/g, "");
+        this.answers[this.current.input.name] = {text: answerText, value: answerObject};
+        this.current.answer = {text: answerText, value: answerObject};
+        //console.log('previous answer: ', answerObject);
+    } else {
+        this.answers[this.current.input.name] = answerObject;
+        this.current.answer = answerObject;
+    }
+    if(this.current.input.type == 'select' && !this.current.input.multiple) {
+        $(this.current.input.element).val(answerObject.value).change();
+    } else {
+        $(this.current.input.element).val(answerObject).change();
+    }
+}
+//prints answer within messages wrapper
+if(this.current.input.type == 'password')
+    answerText = answerText.replace(/./g, '*');
+var message = $('<div class="message from">'+answerText+'</div>');
+
+if(this.current.input.type=='select' && this.parameters.selectInputStyle=='disable') {
+    $(this.wrapper).find('#'+this.parameters.inputIdName).prop('disabled', false);
+    $(this.wrapper).find('#'+this.parameters.inputIdName).attr('placeholder', this.parameters.placeHolder);
+} else if(this.current.input.type=='select' && this.parameters.selectInputStyle=='hide') {
+    if(!this.current.input.multiple) {
+        $(this.wrapper).find('#'+this.parameters.inputIdName).css({display: 'block'});
+        $(this.wrapper).find('#convForm button').css({display: 'block'});
+    } else {
+        $(this.wrapper).find('#'+this.parameters.inputIdName).prop('disabled', false);
+        $(this.wrapper).find('#'+this.parameters.inputIdName).attr('placeholder', this.parameters.placeHolder);
+    }
+}
+
+//removes options before appending message so scroll animation runs without problems
+$(this.wrapper).find("div.options div.option").remove();
+
+
+
+var diff = $(this.wrapper).find('div.options').height();
+var originalHeight = $(this.wrapper).find('.wrapper-messages').data('originalHeight');
+$(this.wrapper).find('.wrapper-messages').css({marginBottom: diff, maxHeight: originalHeight});
+$(this.wrapper).find(this.parameters.inputIdHashTagName).focus();
+if (answerObject.hasOwnProperty('callback')) {
+    this.current.input['callback'] = answerObject.callback;
+}
+setTimeout(function(){
+    $(this.wrapper).find("#messages").append(message);
+    this.scrollDown();
+}.bind(this), 100);
+
+$(this.form).append(this.current.input.element);
+var messageObj = $('<div class="message to typing"><div class="typing_loader"></div></div>');
+setTimeout(function(){
+    $(this.wrapper).find('#messages').append(messageObj);
+    this.scrollDown();
+}.bind(this), 150);
+
+this.parameters.eventList.onInputSubmit(this, function(){
+    //goes to next state and prints question
+    if(this.next()){
+        setTimeout(function(){
+            this.printQuestion();
+        }.bind(this), 300);
+    } else {
+        this.parameters.eventList.onSubmitForm(this);
+    }
+}.bind(this));
+
+    }
+}    
+else if(chi==2)
+{console.log('previous answer: ', chi);
+    if(answerObject=="Can I order through swiggy"||answerObject=="CanIorderthroughswiggy"||answerObject=="can i order through swiggy"||answerObject=="caniorderthroughswiggy"||answerObject=="Can order through swiggy"||answerObject=="Canorderthroughswiggy"||answerObject=="can order through swiggy"||answerObject=="canorderthroughswiggy"){
+        if(this.current.input.hasOwnProperty('name')){
+            if(typeof answerObject == 'string') {
+                if(this.current.input.type == 'tel')
+                    answerObject = answerObject.replace(/\s|\(|\)|-/g, "");
+                this.answers[this.current.input.name] = {text: answerText, value: answerObject};
+                this.current.answer = {text: answerText, value: answerObject};
+                //console.log('previous answer: ', answerObject);
+            } else {
+                this.answers[this.current.input.name] = answerObject;
+                this.current.answer = answerObject;
+            }
+            if(this.current.input.type == 'select' && !this.current.input.multiple) {
+                $(this.current.input.element).val(answerObject.value).change();
+            } else {
+                $(this.current.input.element).val(answerObject).change();
+            }
+        }
+        //prints answer within messages wrapper
+        if(this.current.input.type == 'password')
+            answerText = answerText.replace(/./g, '*');
+        var message = $('<div class="message from">'+answerText+'</div>');
+        
+        if(this.current.input.type=='select' && this.parameters.selectInputStyle=='disable') {
             $(this.wrapper).find('#'+this.parameters.inputIdName).prop('disabled', false);
             $(this.wrapper).find('#'+this.parameters.inputIdName).attr('placeholder', this.parameters.placeHolder);
+        } else if(this.current.input.type=='select' && this.parameters.selectInputStyle=='hide') {
+            if(!this.current.input.multiple) {
+                $(this.wrapper).find('#'+this.parameters.inputIdName).css({display: 'block'});
+                $(this.wrapper).find('#convForm button').css({display: 'block'});
+            } else {
+                $(this.wrapper).find('#'+this.parameters.inputIdName).prop('disabled', false);
+                $(this.wrapper).find('#'+this.parameters.inputIdName).attr('placeholder', this.parameters.placeHolder);
+            }
         }
-    }
-
-    //removes options before appending message so scroll animation runs without problems
-    $(this.wrapper).find("div.options div.option").remove();
-    
-
-
-    var diff = $(this.wrapper).find('div.options').height();
-    var originalHeight = $(this.wrapper).find('.wrapper-messages').data('originalHeight');
-    $(this.wrapper).find('.wrapper-messages').css({marginBottom: diff, maxHeight: originalHeight});
-    $(this.wrapper).find(this.parameters.inputIdHashTagName).focus();
-    if (answerObject.hasOwnProperty('callback')) {
-        this.current.input['callback'] = answerObject.callback;
-    }
-    setTimeout(function(){
-        $(this.wrapper).find("#messages").append(message);
-        this.scrollDown();
-    }.bind(this), 100);
-
-    $(this.form).append(this.current.input.element);
-    var messageObj = $('<div class="message to typing"><div class="typing_loader"></div></div>');
-    setTimeout(function(){
-        $(this.wrapper).find('#messages').append(messageObj);
-        this.scrollDown();
-    }.bind(this), 150);
-
-    this.parameters.eventList.onInputSubmit(this, function(){
-        //goes to next state and prints question
-        if(this.next()){
-            setTimeout(function(){
-                this.printQuestion();
-            }.bind(this), 300);
-        } else {
-            this.parameters.eventList.onSubmitForm(this);
+        
+        //removes options before appending message so scroll animation runs without problems
+        $(this.wrapper).find("div.options div.option").remove();
+        
+        
+        
+        var diff = $(this.wrapper).find('div.options').height();
+        var originalHeight = $(this.wrapper).find('.wrapper-messages').data('originalHeight');
+        $(this.wrapper).find('.wrapper-messages').css({marginBottom: diff, maxHeight: originalHeight});
+        $(this.wrapper).find(this.parameters.inputIdHashTagName).focus();
+        if (answerObject.hasOwnProperty('callback')) {
+            this.current.input['callback'] = answerObject.callback;
         }
-    }.bind(this));
+        setTimeout(function(){
+            $(this.wrapper).find("#messages").append(message);
+            this.scrollDown();
+        }.bind(this), 100);
+        
+        $(this.form).append(this.current.input.element);
+        var messageObj = $('<div class="message to typing"><div class="typing_loader"></div></div>');
+        setTimeout(function(){
+            $(this.wrapper).find('#messages').append(messageObj);
+            this.scrollDown();
+        }.bind(this), 150);
+        
+        this.parameters.eventList.onInputSubmit(this, function(){
+            //goes to next state and prints question
+            if(this.next()){
+                setTimeout(function(){
+                    this.printQuestion();
+                }.bind(this), 300);
+            } else {
+                this.parameters.eventList.onSubmitForm(this);
+            }
+        }.bind(this));
+    }
+}
+
 };
 
 (function($){
