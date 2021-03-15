@@ -1,7 +1,9 @@
 const connectDB = require('../database/connection')
+const session = require('express-session');
 
 exports.FindItems = (req,res) =>{
     const Id = req.query.Id;
+    session.Id = Id;
     const data = new Array(2);
     const Query = "select * from menulist where Menu_Id = "+Id;
     connectDB.query(Query,function(err,result,field){
@@ -34,7 +36,7 @@ exports.DeleteItem = (req,res) =>{
         if(err){
             console.log(`Error : When Deleting item for Id : ${id} ==>${err}`)
         }
-        res.redirect('/DetailedMenu?Id=1');
+        res.redirect('/DetailedMenu?Id='+session.Id);
     });
 
 }
@@ -58,7 +60,7 @@ exports.Order = (req,res) =>{
                     connectDB.query(sql,function(err,data,field){
                         if(err)
                             console.log("Error : while Update Quantity in MyOrde Table ==>"+err);
-                        res.redirect('/DetailedMenu?Id=1');
+                        res.redirect('/DetailedMenu?Id='+session.Id);
                     })
                 }else{
                     const InsQ = `insert into myorder (Item,No_Of_Item,Price) values('${result[0].Name}',${1},${result[0].Price})`;
@@ -67,7 +69,7 @@ exports.Order = (req,res) =>{
                             console.log("Error : while Insert record in MyOrde Table ==>"+err);
                         // res.redirect('/DetailedMenu?Id=1');
                     })
-                    res.redirect('/DetailedMenu?Id=1');
+                    res.redirect('/DetailedMenu?Id='+session.Id);
                 }
             }
         });
