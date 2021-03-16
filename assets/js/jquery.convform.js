@@ -329,6 +329,8 @@ this.parameters.eventList.onInputSubmit(this, function(){
     }
 }.bind(this));
 
+    }else{
+        alert("Please enter appropriate area name: areaname,cityname for example hsr,bangalore");
     }
 }    
 else if(chi==2)
@@ -403,6 +405,8 @@ else if(chi==2)
                 this.parameters.eventList.onSubmitForm(this);
             }
         }.bind(this));
+    }else{
+        alert("enter valid input like can i order through swiggy");
     }
 }
 
